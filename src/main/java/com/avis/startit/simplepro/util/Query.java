@@ -1,0 +1,105 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.avis.startit.simplepro.util;
+
+import java.util.Arrays;
+import lombok.extern.log4j.Log4j2;
+
+/**
+ *
+ * @author avistech
+ */
+@Log4j2
+public enum Query {
+    ABANDON_CALL("ABANDON-CALL"), CALL_CONNECTED("CALL-CONNECTED"), FOLLOW_UP_USERONLY("FOLLOWUP-USERONLY"), PREVIEW_CALL("PREVIEW-CALL"),
+    DROP_CALL("DROP-CALL"), OVERFLOW("OVERFLOW"), MANUAL_DIAL("MANUAL-DIAL"), AUTO_DIAL("AUTO-DIAL"), AUTO_DISPOSITION("AUTO-DISPOSITION"),
+    SIP_TRUNKGROUP("SIP-TRUNKGROUP"), ENCRYPT_DECRYPT("ENCRYPT-DECRYPT"), CANCEL_MANUAL_CALL("CANCEL-MANUAL-CALL"), CUSTOMER_NUMBER_DIAL("CUSTOMER-NUMBER-DIAL"),
+    AGENT_CHANNEL("AGENT-CHANNEL"), SUP_CHANNEL("SUP-CHANNEL"), CONF_CONNECTED("CONF-CONNECTED"), SERVER("SERVER"), DOMAIN("DOMAIN"),
+    QUEUE("QUEUE"), DOMAIN_SERVER("DOMAIN-SERVER"), ACW("ACW"), ORIGINATE_FAILURE("ORIGINATE-FAILURE"), REDIRECT_CHANNEL("REDIRECT-CHANNEL"),
+    SERVER_STATUS("SERVER-STATUS"),
+    TRUNK_STATUS("TRUNK-STATUS"),
+    DELETE_MOH("DELETE-MOH"),
+    DELETE_DROP_CALL_MSG("DELETE-DROP-CALL-MSG"),
+    DELETE_AMD_MSG("DELETE-AMD-MSG"),
+    QUEUELENGTH("QUEUELENGTH"),
+    MUSIC("MUSIC"),
+    EXPECTED_WAIT("EXPECTED-WAIT"),
+    VOICE_MAIL("VOICE-MAIL"),
+    EXTERNAL("EXTERNAL"),
+    //EXE Handler Queries
+    LOAD_ALL_EXTENSION("LOAD-ALL-EXTENSION"),
+    CHANGE_EXTENSION("CHANGE-EXTENSION"),
+    FOLLOW_UP_DIAL("FOLLOWUP-DIAL"),
+    PREVIEW_DIAL("PREVIEW-DIAL"),
+    REDIAL_ALT_DIAL("REDIAL-ALTERNATE-DIAL"),
+    CUSTOMER_DIAL("CUSTOMER-DIAL"),
+    AGENT_DIAL("AGENT-DIAL"),
+    REJECT_INCOMING_CALL("REJECT-INCOMING-CALL"),
+    LOAD_CONF_NUMBER("LOAD-CONF-NUMBER"),
+    CONFERENCE_DIAL("CONFERENCE-DIAL"),
+    UPDATE_CONFERENCE("UPDATE-CONFERENCE"),
+    HOLD_UNHOLD("HOLD-UNHOLD"),
+    STOP_START_RECORDING("STOP-START-RECORDING"),
+    HANGUP_CHANNEL("HANGUP-CHANNEL"),
+    HANGUP_CONF_CHANNEL("HANGUP-CONF-CHANNEL"),
+    DISPOSITION_REQUEST("DISPOSITION-REQUEST"),
+    DISPOSED("DISPOSED"),
+    MODIFIED_URL("MODIFIED-URL"),
+    CONF_TRANSFER("CONF-TRANSFER"),
+    QUEUE_CHANGE_TRANSFER("QUEUE-CHANGE-TRANSFER"),
+    QUEUE_TRANSFER("QUEUE-TRANSFER"),
+    IVR_TRANSFER_LIST("IVR-TRANSFER-LIST"),
+    IVR_TRANSFER("IVR-TRANSFER"),
+    AGENT_TRANSFER_LIST("AGENT-TRANSFER-LIST"),
+    AGENT_TRANSFER("AGENT-TRANSFER"),
+    AGENT_CHANGE_TRANSFER("AGENT-CHANGE-TRANSFER"),
+    CREATE_BRIDGE("CREATE-BRIDGE"), DELETE_BRIDGE("DELETE-BRIDGE"),
+    WAV_TO_MP3("WAV-TO-MP3"),
+    LOGOUT("LOGOUT"),
+    GET_LICENSE("GET-LICENSE"),
+    GET_DOMAIN_LICENSE("GET-DOMAIN-LICENSE"),
+    DOMAIN_LICENCE("DOMAIN-LICENCE"),
+    //Report Queries
+    SUP_DIAL("SUP-DIAL"),
+    CALL_BARGE("CALL-BARGE"),
+    CALL_WHISPER("CALL-WHISPER"),
+    CALL_LISTEN("CALL-LISTEN"),
+    CALL_HANGUP("CALL-HANGUP"),
+    DELETE_RECORDING("DELETE-RECORDING"),
+    CHANNEL_STATUS("CHANNEL-STATUS"),
+    ADMIN_UP("ADMIN-UP"),
+    LOAD_IVR("LOAD-IVR"),
+    VIDEO_DIAL("VIDEO-DIAL"),
+    VIDEO_CONNECTED("VIDEO-CONNECTED"),
+    VIDEO_CALL_REQUEST("VIDEO-CALL-REQUEST");
+
+    private final String VALUE;
+
+    private Query(String value) {
+        this.VALUE = value;
+    }
+
+    public String getValue() {
+        return VALUE;
+    }
+
+    /**
+     * @param s
+     * @return the Enum representation for the given string.
+     * @throws IllegalArgumentException if unknown string.
+     */
+    public static Query fromString(String s) throws IllegalArgumentException {
+        Query query = Arrays.stream(Query.values())
+                .filter(v -> v.VALUE.equals(s))
+                .findFirst()
+                .orElse(null);
+
+        if (query == null) {
+            log.warn("unknown Query: {}", s);
+        }
+        return query;
+    }
+}
